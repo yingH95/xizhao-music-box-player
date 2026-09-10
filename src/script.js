@@ -90,7 +90,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         const filename = opt.value;
         if (!filename) continue;
         try {
-            const res = await fetch(`./sheets/${filename}`);
+            const res = await fetch(`./src/sheets/${filename}`);
             if (res.ok) {
                 const data = await res.json();
                 const title = data.chinese_title || data.title;
@@ -124,7 +124,7 @@ songSelect.addEventListener('change', async (e) => {
     }
 
     try {
-        const response = await fetch(`./sheets/${filename}`);
+        const response = await fetch(`./src/sheets/${filename}`);
         if (!response.ok) throw new Error("无法加载曲谱文件。");
         currentSongData = await response.json();
         
