@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>音乐盒模拟器</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- 包含显示面板与钢琴键盘的统一外层容器 -->
+    <div class="piano-app-wrapper">
+
+        <div id="display-board">
+            <div id="titleContainer" class="song-title-main">音乐盒模拟器</div>
+            <div id="subTitleContainer" class="song-title-sub"></div>
+            
+            <!-- 曲谱选择与图形化控制按钮内嵌在显示面板中 -->
+            <div id="controls">
+                <select id="songSelect">
+                    <option value="">-- 请选择曲谱 --</option>
+                    <option value="以永远为单位.json">以永远为单位 (简单)</option>
+                    <option value="刻在我心底的名字.json">刻在我心底的名字 (普通)</option>
+                </select>
+                <button id="playPauseBtn" disabled title="播放">▶</button>
+                <button id="muteToggleBtn" class="toggle-btn" disabled title="静音">🔊</button>
+                <button id="instrumentToggleBtn" class="toggle-btn" title="切换音色">🎼</button>
+            </div>
+
+            <!-- 始终显示 Expanded View 完整曲谱 -->
+            <div id="fullSheetContainer" class="full-sheet-container">
+                <div class="full-sheet-line">
+                    <div class="full-lyrics">请选择一首曲谱开始</div>
+                    <div class="full-notes"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 钢琴键盘外层滚动容器（内部键盘将自动居中对齐） -->
+        <div class="piano-container">
+            <div class="piano" id="keyboard"></div>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

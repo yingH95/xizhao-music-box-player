@@ -1,0 +1,327 @@
+body { 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+    min-height: 100vh; 
+    background: linear-gradient(135deg, #1f130c 0%, #2c1a10 100%); 
+    color: #fef3c7; 
+    font-family: 'Inter', sans-serif, system-ui; 
+    margin: 0; 
+    padding: 12px; 
+    box-sizing: border-box; 
+    overflow-x: hidden;
+}
+
+/* 包含显示面板与钢琴键盘的统一外层容器：严格限制宽度防止页面整体横向滚动 */
+.piano-app-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;        
+    max-width: 650px;   
+    box-sizing: border-box;
+    gap: 10px;
+}
+
+#display-board { 
+    padding: 14px 18px; 
+    background: linear-gradient(135deg, #27160d 0%, #381d0f 100%); 
+    border: 2px solid; 
+    border-image: linear-gradient(to right, #f59e0b, #ea580c) 1;
+    border-radius: 12px; 
+    text-align: center; 
+    width: 100%; 
+    box-sizing: border-box;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4); 
+}
+
+.song-title-main {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fed7aa;
+    margin-bottom: 2px;
+    opacity: 0.85;
+}
+
+.song-title-sub {
+    font-size: 0.85rem;
+    color: #d1d5db;
+    margin-bottom: 10px;
+    opacity: 0.7;
+    letter-spacing: 0.5px;
+}
+
+#controls { 
+    margin-bottom: 12px; 
+    display: flex; 
+    gap: 8px; 
+    align-items: center; 
+    justify-content: center;
+    width: 100%;
+}
+
+button { 
+    padding: 10px 14px; 
+    background: linear-gradient(to right, #ea580c, #d97706); 
+    color: #fff; 
+    border: 1px solid #f97316; 
+    border-radius: 8px; 
+    cursor: pointer; 
+    font-size: 1rem; 
+    font-weight: 600;
+    box-shadow: 0 4px 6px rgba(234, 88, 12, 0.2);
+    transition: all 0.2s ease;
+    touch-action: manipulation;
+}
+
+/* 精美优化的下拉菜单及下拉选项样式 */
+select {
+    appearance: none; 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #27160d;
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23ea580c%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    background-size: 10px;
+    padding: 10px 36px 10px 14px; 
+    border: 1px solid #ea580c;
+    border-radius: 8px;
+    color: #fef3c7;
+    flex: 1;
+    min-width: 0;
+    font-size: 0.9rem;
+    font-family: inherit;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(234, 88, 12, 0.15);
+    transition: all 0.2s ease;
+}
+
+select:hover {
+    border-color: #f59e0b;
+    box-shadow: 0 6px 10px rgba(234, 88, 12, 0.25);
+}
+
+select:focus {
+    outline: none;
+    border-color: #f59e0b;
+    box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.3);
+}
+
+/* 下拉菜单子选项深色沉浸主题及边距 */
+select option {
+    background-color: #27160d;
+    color: #fef3c7;
+    padding: 12px 10px;
+    font-size: 0.95rem;
+}
+
+select option:hover, 
+select option:focus, 
+select option:checked {
+    background-color: #381d0f;
+    color: #fed7aa;
+}
+
+#playPauseBtn, #instrumentToggleBtn, #muteToggleBtn {
+    min-width: 44px;
+    text-align: center;
+    padding: 10px 12px;
+}
+
+button:hover:not(:disabled), select:hover { 
+    opacity: 0.95;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 10px rgba(234, 88, 12, 0.3);
+}
+
+button:disabled { 
+    background: #451a03; 
+    border-color: #78350f; 
+    color: #78350f; 
+    cursor: not-allowed; 
+    box-shadow: none;
+}
+
+/* 切换按钮样式（未激活状态） */
+.toggle-btn {
+    background: #27160d;
+    border: 1px solid #ea580c;
+    color: #fed7aa;
+}
+
+/* 切换按钮样式（激活状态） */
+.toggle-btn.active {
+    background: linear-gradient(to right, #16a34a, #15803d);
+    border-color: #22c55e;
+    color: #fff;
+    box-shadow: 0 4px 6px rgba(34, 197, 94, 0.3);
+}
+
+/* 完整曲谱展示容器（固定高度） */
+.full-sheet-container {
+    background: #fbf8f1;
+    color: #291810;
+    border: 1px solid #d9a066;
+    border-radius: 8px;
+    padding: 12px;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.06), 0 2px 6px rgba(0,0,0,0.2);
+    height: 160px;
+    overflow-y: auto;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-sizing: border-box;
+}
+
+/* 可点击曲谱行样式与交互 */
+.full-sheet-line {
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: background 0.2s, transform 0.1s;
+    cursor: pointer;
+}
+
+.full-sheet-line:hover {
+    background: #fef08a; 
+}
+
+.full-sheet-line.highlight {
+    background: #fde68a;
+    border-left: 4px solid #ea580c;
+}
+
+.full-lyrics {
+    font-size: 0.95rem;
+    font-weight: bold;
+    color: #9a3412;
+    margin-bottom: 2px;
+}
+
+.full-notes {
+    font-family: monospace;
+    font-size: 1.05rem;
+    letter-spacing: 1.5px;
+    color: #291810;
+    font-weight: bold;
+}
+
+/* 钢琴键盘外层滚动容器 */
+.piano-container {
+    width: 100%;        
+    overflow-x: auto;
+    overflow-y: visible;
+    box-sizing: border-box;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    padding-top: 0; 
+    margin-top: 0;
+    -webkit-overflow-scrolling: touch;
+}
+
+.piano { 
+    display: flex; 
+    position: relative; 
+    background: #27160d; 
+    padding: 14px; 
+    border-radius: 12px; 
+    border: 2px solid #ea580c;
+    width: max-content;
+    box-sizing: border-box;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+}
+
+.key { 
+    position: relative; 
+    cursor: pointer; 
+    user-select: none; 
+    border-radius: 0 0 6px 6px; 
+    touch-action: manipulation;
+}
+
+.white { 
+    width: 40px; 
+    height: 150px; 
+    background: linear-gradient(to bottom, #fffbeb 0%, #fef3c7 100%); 
+    border: 1px solid #d97706; 
+    z-index: 1; 
+    box-sizing: border-box; 
+    transition: background 0.1s; 
+}
+
+.white:active, .white.active { 
+    background: linear-gradient(to bottom, #fde68a, #fcd34d); 
+}
+
+.black { 
+    width: 28px; 
+    height: 90px; 
+    background: linear-gradient(to bottom, #451a03 0%, #1f130c 100%); 
+    position: absolute; 
+    z-index: 2; 
+    border-radius: 0 0 4px 4px; 
+    transition: background 0.1s; 
+    border: 1px solid #78350f; 
+}
+
+.black:active, .black.active { 
+    background: linear-gradient(to bottom, #78350f, #451a03); 
+}
+
+/* 琴键上方悬浮音符提示框：直接叠加在琴键内的 Overlay 浮层 */
+.note-popup {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%) translateY(4px);
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(2px);
+    color: #fef3c7;
+    padding: 2px 5px;
+    border-radius: 4px;
+    font-size: 0.65rem;
+    font-weight: bold;
+    opacity: 0;
+    transition: opacity 0.15s ease, transform 0.15s ease;
+    pointer-events: none;
+    white-space: nowrap;
+    z-index: 10;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.key.active .note-popup {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* 手机移动端媒体查询样式 */
+@media screen and (max-width: 1024px), (hover: none) and (pointer: coarse) {
+    body {
+        padding: 8px;
+    }
+    .piano-app-wrapper {
+        width: 100%;
+    }
+    .song-title-main, 
+    .song-title-sub {
+        display: none !important;
+        visibility: hidden !important;
+        height: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+    .piano-container {
+        overflow-x: auto;
+        justify-content: center;
+        padding-top: 0;
+        margin-top: 0;
+    }
+    .piano {
+        transform: none;
+        margin-bottom: 0;
+        margin-top: 0;
+    }
+}

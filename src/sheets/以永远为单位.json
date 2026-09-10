@@ -1,0 +1,31 @@
+{
+    "title": "以永远为单位",
+    "singer": "何昶希 何衍朝",
+    "difficulty": "简单",
+    "piano": [
+        {
+            "lyrics": "我们要永远一起",
+            "notes": "C6 D6 E6 G6 A6 - G6 D6 -"
+        },
+        {
+            "lyrics": "去看日升日落",
+            "notes": "G6 A6 - G6 D6 - D6 E6 - -"
+        },
+        {
+            "lyrics": "拥抱每个朝夕",
+            "notes": "C6 G6 - G6 A6 - G6 D6 -"
+        },
+        {
+            "lyrics": "谱写浪漫的赞歌",
+            "notes": "G6 A6 - G6 D6 - E6 - F6 - G6 - -"
+        },
+        {
+            "lyrics": "这场梦 是永不落幕的",
+            "notes": "E6 D6 C6 - - C6 D6 E6 G6 B6 C7 - - B6 A6 -"
+        },
+        {
+            "lyrics": "是我们 最闪耀的时刻",
+            "notes": "E6 D6 C6 - - E6 D6 C6 B5 C6 C6 - - -"
+        }
+    ]
+}
