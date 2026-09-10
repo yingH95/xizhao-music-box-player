@@ -1,0 +1,43 @@
+{
+    "title": "是你爱了我",
+    "singer": "何昶希",
+    "difficulty": "困难",
+    "piano": [
+        {
+            "lyrics": "",
+            "notes": "G5 A5 C6 - A5 E6 - - -" 
+        }, 
+        {
+            "lyrics": "",
+            "notes": "E6 E6 E6 D6 C6 - D6 - E6 - -" 
+        },
+        {
+            "lyrics": "",
+            "notes": "G5 A5 C6 - A5 E6 - D6 D6 - C6 - -"
+        },
+        {
+            "lyrics": "",
+            "notes": "E6 E6 E6 D6 C6 - D6 - E6 - D6 - C6 - -"
+        },
+        {
+            "lyrics": "",
+            "notes": ""
+        },
+        {
+            "lyrics": "",
+            "notes": ""
+        },
+        {
+            "lyrics": "",
+            "notes": ""
+        },
+        {
+            "lyrics": "",
+            "notes": ""
+        },
+        {
+            "lyrics": "",
+            "notes": ""
+        }
+    ]
+}
