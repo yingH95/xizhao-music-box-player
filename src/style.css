@@ -529,6 +529,16 @@ button:disabled {
         flex-wrap: wrap;
     }
 
+    .full-notes {
+        letter-spacing: 0.5px;
+    }
+
+    .sheet-note {
+        min-width: 1.95em;
+        margin-right: 1px;
+        padding: 2px;
+    }
+
     #portraitHint {
         display: block;
     }
@@ -587,6 +597,17 @@ button:disabled {
     #controls {
         margin-bottom: 8px;
         gap: 6px;
+    }
+
+    .full-notes {
+        font-size: 0.95rem;
+        letter-spacing: 0.3px;
+    }
+
+    .sheet-note {
+        min-width: 1.85em;
+        margin-right: 1px;
+        padding: 1px 2px;
     }
 
     .full-sheet-container {
