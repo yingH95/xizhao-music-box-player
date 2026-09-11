@@ -69,6 +69,14 @@ body[data-background-theme="dawn"] {
     filter: drop-shadow(0 10px 16px rgba(0, 0, 0, 0.28));
 }
 
+.credits {
+    margin-top: 6px;
+    color: rgba(254, 243, 199, 0.5);
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.45);
+}
+
 /* 包含显示面板与钢琴键盘的统一外层容器：严格限制宽度防止页面整体横向滚动 */
 .piano-app-wrapper {
     display: flex;
@@ -579,6 +587,12 @@ button:disabled {
         min-width: 0;
         max-width: 100%;
         gap: 6px;
+    }
+
+    .credits {
+        margin-top: 2px;
+        font-size: 0.68rem;
+        opacity: 0.5;
     }
 
     #display-board {
