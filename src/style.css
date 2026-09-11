@@ -13,6 +13,31 @@ body {
     overflow-x: hidden;
 }
 
+.app-scene {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: min(100%, 1200px);
+    gap: clamp(14px, 2vw, 34px);
+    padding: 8px 0;
+}
+
+.sprite-side {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 150px;
+}
+
+.sprite-side img {
+    width: clamp(128px, 12vw, 220px);
+    height: auto;
+    display: block;
+    image-rendering: pixelated;
+    filter: drop-shadow(0 10px 16px rgba(0, 0, 0, 0.28));
+}
+
 /* 包含显示面板与钢琴键盘的统一外层容器：严格限制宽度防止页面整体横向滚动 */
 .piano-app-wrapper {
     display: flex;
@@ -26,11 +51,11 @@ body {
 
 #portraitHint {
     display: none;
-    font-size: 3rem;
+    font-size: 1rem;
     letter-spacing: 0.08em;
     color: #fbbf24;
     text-align: center;
-    opacity: 0.9;
+    opacity: 0.3;
 }
 
 #display-board { 
@@ -321,19 +346,25 @@ button:disabled {
     body {
         padding: 8px;
     }
+
+    .app-scene {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .sprite-side {
+        min-width: auto;
+    }
+
+    .sprite-side img {
+        width: 140px;
+    }
+
     .piano-app-wrapper {
         width: 100%;
     }
     #portraitHint {
         display: block;
-    }
-    .song-title-main, 
-    .song-title-sub {
-        display: none !important;
-        visibility: hidden !important;
-        height: 0 !important;
-        margin: 0 !important;
-        padding: 0 !important;
     }
     .piano-container {
         overflow-x: auto;
@@ -351,6 +382,14 @@ button:disabled {
 @media screen and (orientation: landscape) and (max-width: 900px) {
     body {
         padding: 6px;
+    }
+
+    .app-scene {
+        gap: 10px;
+    }
+
+    .sprite-side img {
+        width: 110px;
     }
 
     .piano-app-wrapper {

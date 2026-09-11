@@ -18,7 +18,7 @@ const notes = [
 
 const SONG_SELECT_DEFAULT = '<option value="">请选择曲谱</option>';
 const KEY_SELECT_DEFAULT = '<option value="">请选择调式</option>';
-const getSheetUrl = (filename) => `./sheets/${filename}`;
+const getSheetUrl = (filename) => `/sheets/${encodeURIComponent(filename)}`;
 
 const whiteKeyWidth = 40;
 const blackKeyWidth = 28;
