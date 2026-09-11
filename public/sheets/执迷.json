@@ -1,0 +1,44 @@
+{
+    "title": "执迷",
+    "singer": "何衍朝",
+    "difficulty": "普通",
+    "piano": [
+        {
+            "key": "Cmin",
+            "sheet": [
+                {
+                    "lyrics": "仍不肯迷失",
+                    "notes": "C6 Ab6 G6 C6 - Ab6 - "
+                },
+                {
+                    "lyrics": "争得一口气",
+                    "notes": "Ab6 Ab6 Ab6 C6 Bb5 - -"
+                },
+                {
+                    "lyrics": "聆听我心声",
+                    "notes": "Bb5 G6 F6 Bb6 - G6 F6"
+                },
+                {
+                    "lyrics": "我不再逃避",
+                    "notes": "Eb6 F6 Eb6 Bb5 C6 - -"
+                },
+                {
+                    "lyrics": "活着就是为",
+                    "notes": "C6 C6 C6 Db6 - C6 -"
+                },
+                {
+                    "lyrics": "还心中真理",
+                    "notes": "C6 G6 - G6 G6 F6 F6 - -"
+                },
+                {
+                    "lyrics": "将欢笑伤悲",
+                    "notes": "Db6 C6 Ab5 C6 - Bb5 -"
+                },
+                {
+                    "lyrics": "刻成碑记",
+                    "notes": "G5 - C5 G5 - F5 - -"
+                }
+            ]
+        }
+    ]
+}

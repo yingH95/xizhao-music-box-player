@@ -1,16 +1,34 @@
+html {
+    min-height: 100%;
+}
+
 body { 
     display: flex; 
     flex-direction: column; 
     align-items: center; 
     justify-content: center; 
-    min-height: 100vh; 
-    background: linear-gradient(135deg, #1f130c 0%, #2c1a10 100%); 
+    min-height: 100vh;
+    min-height: 100dvh;
+    background-color: #080d24;
+    background-image:
+        linear-gradient(rgba(5, 8, 24, 0.42), rgba(8, 12, 34, 0.58)),
+        url('/backgrounds/pixel-night-sky.png');
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
     color: #fef3c7; 
     font-family: 'Inter', sans-serif, system-ui; 
     margin: 0; 
     padding: 12px; 
     box-sizing: border-box; 
     overflow-x: hidden;
+}
+
+body[data-background-theme="dawn"] {
+    background-color: #6e2b18;
+    background-image:
+        linear-gradient(rgba(47, 16, 12, 0.28), rgba(66, 24, 17, 0.44)),
+        url('/backgrounds/pixel-dawn-sky-orange.png');
 }
 
 .app-scene {
@@ -28,6 +46,18 @@ body {
     align-items: center;
     justify-content: center;
     min-width: 150px;
+    cursor: pointer;
+    outline: none;
+}
+
+.sprite-side:focus-visible img {
+    outline: 3px solid #fef3c7;
+    outline-offset: 5px;
+}
+
+.sprite-side:hover img,
+.sprite-side:active img {
+    transform: translateY(-2px) scale(1.03);
 }
 
 .sprite-side img {
@@ -35,6 +65,7 @@ body {
     height: auto;
     display: block;
     image-rendering: pixelated;
+    transition: transform 0.18s ease;
     filter: drop-shadow(0 10px 16px rgba(0, 0, 0, 0.28));
 }
 
@@ -49,15 +80,6 @@ body {
     gap: 10px;
 }
 
-#portraitHint {
-    display: none;
-    font-size: 1rem;
-    letter-spacing: 0.08em;
-    color: #fbbf24;
-    text-align: center;
-    opacity: 0.3;
-}
-
 #display-board { 
     padding: 14px 18px; 
     background: linear-gradient(135deg, #27160d 0%, #381d0f 100%); 
@@ -70,12 +92,63 @@ body {
     box-shadow: 0 10px 25px rgba(0,0,0,0.4); 
 }
 
-.song-title-main {
+.title-controls-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    max-width: 100%;
+}
+
+.song-picker-title,
+.key-picker-title,
+.empty-song-picker {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 100%;
+    padding: 2px 24px 2px 8px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.song-picker-title::after,
+.key-picker-title::after,
+.empty-song-picker::after {
+    content: "▾";
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #fb923c;
+    font-size: 0.9rem;
+    pointer-events: none;
+}
+
+.song-picker-title:hover,
+.key-picker-title:hover,
+.empty-song-picker:hover {
+    background: rgba(251, 146, 60, 0.12);
+}
+
+.song-title-main,
+.key-title-text {
     font-size: 1rem;
     font-weight: 600;
     color: #fed7aa;
-    margin-bottom: 2px;
     opacity: 0.85;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.key-picker-title {
+    flex: 0 0 auto;
+}
+
+.key-title-text {
+    font-size: 0.9rem;
 }
 
 .song-title-sub {
@@ -95,14 +168,15 @@ body {
     width: 100%;
 }
 
-#songSelect {
-    flex: 1 1 auto;
-    width: auto;
-}
-
-#keySelect {
-    flex: 0 0 120px;
-    width: 120px;
+.song-picker-title #songSelect,
+.key-picker-title #keySelect,
+.empty-song-picker #emptySongSelect {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
 }
 
 button { 
@@ -167,10 +241,41 @@ select option:checked {
     color: #fed7aa;
 }
 
-#playPauseBtn, #instrumentToggleBtn, #muteToggleBtn {
+#playPauseBtn, #practiceBtn, #instrumentToggleBtn, #muteToggleBtn {
     min-width: 44px;
     text-align: center;
     padding: 10px 12px;
+}
+
+.inline-triangle-toggle {
+    min-width: auto;
+    padding: 2px 5px;
+    border: 0;
+    background: transparent;
+    color: #fb923c;
+    box-shadow: none;
+    font-size: 0.9rem;
+    line-height: 1;
+}
+
+.inline-triangle-toggle:hover:not(:disabled) {
+    background: rgba(251, 146, 60, 0.12);
+    box-shadow: none;
+}
+
+#display-board.controls-hidden #controls {
+    margin-bottom: 0;
+}
+
+#display-board.controls-hidden #playPauseBtn,
+#display-board.controls-hidden #practiceBtn,
+#display-board.controls-hidden #muteToggleBtn,
+#display-board.controls-hidden #instrumentToggleBtn {
+    display: none;
+}
+
+.empty-song-picker #emptySongSelect {
+    font-size: 16px;
 }
 
 button:hover:not(:disabled), select:hover { 
@@ -189,7 +294,7 @@ button:disabled {
 
 /* 切换按钮样式（未激活状态） */
 .toggle-btn {
-    background: #27160d;
+    background: #dd7007;
     border: 1px solid #ea580c;
     color: #fed7aa;
 }
@@ -217,6 +322,10 @@ button:disabled {
     flex-direction: column;
     gap: 10px;
     box-sizing: border-box;
+}
+
+#display-board.controls-hidden .full-sheet-container {
+    height: 216px;
 }
 
 /* 可点击曲谱行样式与交互 */
@@ -251,21 +360,60 @@ button:disabled {
     font-weight: bold;
 }
 
+.sheet-note {
+    display: inline-block;
+    min-width: 2.4em;
+    margin: 1px 2px 1px 0;
+    padding: 2px 4px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.sheet-note.current {
+    background: #fb923c;
+    color: #fff7ed;
+    box-shadow: 0 0 0 2px rgba(234, 88, 12, 0.25);
+}
+
+.sheet-note.pause.current {
+    background: #fde68a;
+    color: #9a3412;
+}
+
+.practice-complete-message {
+    margin-top: 10px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    background: linear-gradient(to right, #16a34a, #15803d);
+    color: #fff;
+    font-size: 0.95rem;
+    font-weight: 700;
+    box-shadow: 0 5px 12px rgba(22, 163, 74, 0.25);
+}
+
+.practice-complete-message[hidden] {
+    display: none;
+}
+
 /* 钢琴键盘外层滚动容器 */
 .piano-container {
     width: 100%;        
-    overflow-x: auto;
+    overflow: hidden;
     overflow-y: visible;
     box-sizing: border-box;
     border-radius: 12px;
     display: flex;
     justify-content: center;
-    padding-top: 0; 
+    padding: 8px 12px 12px;
     margin-top: 0;
     -webkit-overflow-scrolling: touch;
 }
 
 .piano { 
+    --white-key-width: 40px;
+    --black-key-width: 28px;
+    --white-key-height: 150px;
+    --black-key-height: 90px;
     display: flex; 
     position: relative; 
     background: #27160d; 
@@ -273,6 +421,7 @@ button:disabled {
     border-radius: 12px; 
     border: 2px solid #ea580c;
     width: max-content;
+    flex: 0 0 auto;
     max-width: none;
     box-sizing: border-box;
     box-shadow: 0 12px 30px rgba(0,0,0,0.6);
@@ -287,8 +436,8 @@ button:disabled {
 }
 
 .white { 
-    width: 40px; 
-    height: 150px; 
+    width: var(--white-key-width);
+    height: var(--white-key-height);
     background: linear-gradient(to bottom, #fffbeb 0%, #fef3c7 100%); 
     border: 1px solid #d97706; 
     z-index: 1; 
@@ -301,8 +450,8 @@ button:disabled {
 }
 
 .black { 
-    width: 28px; 
-    height: 90px; 
+    width: var(--black-key-width);
+    height: var(--black-key-height);
     background: linear-gradient(to bottom, #451a03 0%, #1f130c 100%); 
     position: absolute; 
     z-index: 2; 
@@ -313,6 +462,16 @@ button:disabled {
 
 .black:active, .black.active { 
     background: linear-gradient(to bottom, #78350f, #451a03); 
+}
+
+.white.practice-target {
+    background: linear-gradient(to bottom, #bbf7d0, #86efac);
+    box-shadow: inset 0 0 0 3px rgba(22, 163, 74, 0.45);
+}
+
+.black.practice-target {
+    background: linear-gradient(to bottom, #16a34a, #14532d);
+    box-shadow: inset 0 0 0 2px rgba(187, 247, 208, 0.7);
 }
 
 /* 琴键上方悬浮音符提示框：直接叠加在琴键内的 Overlay 浮层 */
@@ -350,6 +509,7 @@ button:disabled {
     .app-scene {
         flex-direction: column;
         gap: 10px;
+        width: 100%;
     }
 
     .sprite-side {
@@ -357,17 +517,23 @@ button:disabled {
     }
 
     .sprite-side img {
-        width: 140px;
+        width: clamp(72px, 25vw, 140px);
     }
 
     .piano-app-wrapper {
         width: 100%;
+        max-width: 650px;
     }
+
+    #controls {
+        flex-wrap: wrap;
+    }
+
     #portraitHint {
         display: block;
     }
     .piano-container {
-        overflow-x: auto;
+        overflow: hidden;
         justify-content: center;
         padding-top: 0;
         margin-top: 0;
@@ -386,6 +552,12 @@ button:disabled {
 
     .app-scene {
         gap: 10px;
+        width: 100%;
+    }
+
+    .sprite-side {
+        flex: 0 1 96px;
+        min-width: 0;
     }
 
     .sprite-side img {
@@ -393,12 +565,23 @@ button:disabled {
     }
 
     .piano-app-wrapper {
+        flex: 1 1 0;
+        min-width: 0;
         max-width: 100%;
         gap: 6px;
     }
 
     #display-board {
-        padding: 10px 12px;
+        padding: 7px 10px;
+    }
+
+    .song-title-main {
+        font-size: 0.9rem;
+    }
+
+    .song-title-sub {
+        font-size: 0.75rem;
+        margin-bottom: 6px;
     }
 
     #controls {
@@ -407,13 +590,23 @@ button:disabled {
     }
 
     .full-sheet-container {
-        height: 92px;
-        padding: 8px 10px;
+        height: 76px;
+        padding: 6px 8px;
+    }
+
+    #display-board.controls-hidden .full-sheet-container {
+        height: 118px;
+    }
+
+    .practice-complete-message {
+        margin-top: 6px;
+        padding: 5px 10px;
+        font-size: 0.82rem;
     }
 
     .piano-container {
         width: 100%;
-        max-height: 140px;
+        max-height: none;
     }
 
     .piano {
@@ -422,13 +615,4 @@ button:disabled {
         padding: 8px 10px;
     }
 
-    .white {
-        width: 40px;
-        height: 120px;
-    }
-
-    .black {
-        width: 28px;
-        height: 72px;
-    }
 }

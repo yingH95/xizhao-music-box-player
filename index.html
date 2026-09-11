@@ -3,44 +3,53 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <title>希朝音乐盒模拟器</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="stylesheet" href="/src/style.css">
 </head>
 
-<body>
+<body data-background-theme="night">
     <div class="app-scene">
-        <div class="sprite-side left" aria-label="Singer 1"> <img src="/sprites/xixi-piano.gif"
+        <div class="sprite-side left" role="button" tabindex="0" data-background-theme="night"
+            aria-label="切换到夜空背景" title="切换到夜空背景"> <img src="/sprites/xixi-piano.gif"
                 alt="Piano boy singer animation" /> </div> <!-- 包含显示面板与钢琴键盘的统一外层容器 -->
         <div class="piano-app-wrapper">
-            <div id="portraitHint">横屏效果更佳</div>
             <div id="display-board">
-                <div id="titleContainer" class="song-title-main"> 希朝音乐盒模拟器 </div>
+                <div class="title-controls-row">
+                    <div class="song-picker-title" title="选择曲谱">
+                        <div id="titleContainer" class="song-title-main"> 希朝音乐盒模拟器 </div>
+                        <select id="songSelect" aria-label="选择曲谱">
+                            <option value="">请选择曲谱</option>
+                        </select>
+                    </div>
+                    <div id="keyPickerTitle" class="key-picker-title" hidden title="选择调式">
+                        <span id="keyTitleText">C 调</span>
+                        <select id="keySelect" disabled aria-label="选择调式">
+                            <option value="">选择调式</option>
+                        </select>
+                    </div>
+                </div>
                 <div id="subTitleContainer" class="song-title-sub"></div> <!-- 曲谱选择与图形化控制按钮内嵌在显示面板中 -->
-                <div id="controls"> <select id="songSelect">
-                        <option value="">请选择曲谱</option>
-                        <option value="以永远为单位.json"> 以永远为单位 (简单) </option>
-                        <option value="刻在我心底的名字.json"> 刻在我心底的名字 (普通) </option>
-                        <option value="春夏秋冬.json"> 春夏秋冬（简单） </option>
-                        <option value="心扉里的爱.json"> 心扉里的爱（普通） </option>
-                        <option value="是你爱了我.json"> 是你爱了我（普通） </option>
-                    </select> <select id="keySelect" disabled>
-                        <option value="">选择调式</option>
-                    </select> <button id="playPauseBtn" disabled title="播放"> ▶ </button> <button id="muteToggleBtn"
+                <div id="controls"> <button id="playPauseBtn" disabled title="播放"> ▶ </button> <button id="practiceBtn"
+                        class="toggle-btn" disabled title="练习模式"> ✋ </button> <button id="muteToggleBtn"
                         class="toggle-btn" disabled title="静音"> 🔊 </button> <button id="instrumentToggleBtn"
-                        class="toggle-btn" title="切换音色"> 🎼 </button> </div> <!-- 始终显示 Expanded View 完整曲谱 -->
+                        class="toggle-btn" title="切换音色"> 🎶 </button> <button id="hideControlsBtn"
+                        class="inline-triangle-toggle" title="隐藏控制"> ▴ </button> </div> <!-- 始终显示 Expanded View 完整曲谱 -->
                 <div id="fullSheetContainer" class="full-sheet-container">
                     <div class="full-sheet-line">
                         <div class="full-lyrics"> 请选择一首曲谱开始 </div>
                         <div class="full-notes"></div>
                     </div>
                 </div>
+                <div id="practiceCompleteMessage" class="practice-complete-message" hidden>练习完成，太棒啦！</div>
             </div> <!-- 钢琴键盘外层滚动容器（内部键盘将自动居中对齐） -->
             <div class="piano-container">
                 <div class="piano" id="keyboard"></div>
             </div>
         </div>
-        <div class="sprite-side right" aria-label="Singer 2"> <img src="/sprites/zhaozhao-violin.gif"
+        <div class="sprite-side right" role="button" tabindex="0" data-background-theme="dawn"
+            aria-label="切换到日出背景" title="切换到日出背景"> <img src="/sprites/zhaozhao-violin.gif"
                 alt="Black-haired boy singer" /> </div>
     </div>
     <script type="module" src="/src/main.js"></script>
