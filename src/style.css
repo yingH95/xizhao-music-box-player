@@ -513,6 +513,46 @@ button:disabled {
     transform: translateX(-50%) translateY(0);
 }
 
+@keyframes moonGlowBreath {
+    0%, 100% {
+        box-shadow:
+            -6px 0 0 0 #fef3c7 inset,
+            0 0 0 2px rgba(254, 243, 199, 0.14),
+            0 0 14px rgba(253, 230, 138, 0.26);
+    }
+    50% {
+        box-shadow:
+            -6px 0 0 0 #fef3c7 inset,
+            0 0 0 3px rgba(254, 243, 199, 0.2),
+            0 0 24px rgba(253, 230, 138, 0.44);
+    }
+}
+
+@keyframes sunGlowBreath {
+    0%, 100% {
+        box-shadow:
+            0 0 0 4px rgba(251, 146, 60, 0.18),
+            0 0 12px rgba(253, 224, 71, 0.22),
+            0 0 24px rgba(251, 146, 60, 0.12);
+        opacity: 0.68;
+    }
+    50% {
+        box-shadow:
+            0 0 0 6px rgba(251, 146, 60, 0.3),
+            0 0 20px rgba(253, 224, 71, 0.38),
+            0 0 38px rgba(251, 146, 60, 0.22);
+        opacity: 0.78;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body[data-background-theme="night"]::before,
+    body[data-background-theme="night"]::after,
+    body[data-background-theme="dawn"]::before {
+        animation: none !important;
+    }
+}
+
 /* 手机移动端媒体查询样式 */
 @media screen and (max-width: 1024px) and (orientation: portrait), (hover: none) and (pointer: coarse) and (orientation: portrait) {
     body {
@@ -535,6 +575,7 @@ button:disabled {
         image-rendering: pixelated;
         pointer-events: none;
         z-index: 0;
+        animation: moonGlowBreath 4s ease-in-out infinite;
     }
 
     body[data-background-theme="dawn"]::before {
@@ -554,6 +595,7 @@ button:disabled {
         image-rendering: pixelated;
         pointer-events: none;
         z-index: 0;
+        animation: sunGlowBreath 3.7s ease-in-out infinite;
     }
 
     body[data-background-theme="night"]::after {
@@ -600,13 +642,13 @@ button:disabled {
     }
 
     .full-notes {
-        letter-spacing: 0.5px;
+        letter-spacing: 0;
     }
 
     .sheet-note {
-        min-width: 1.95em;
-        margin-right: 1px;
-        padding: 2px;
+        min-width: 1.75em;
+        margin-right: 0;
+        padding: 1px 2px;
     }
 
     #portraitHint {
@@ -677,13 +719,13 @@ button:disabled {
 
     .full-notes {
         font-size: 0.95rem;
-        letter-spacing: 0.3px;
+        letter-spacing: 0;
     }
 
     .sheet-note {
-        min-width: 1.85em;
-        margin-right: 1px;
-        padding: 1px 2px;
+        min-width: 1.68em;
+        margin-right: 0;
+        padding: 1px;
     }
 
     .full-sheet-container {
