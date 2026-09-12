@@ -92,6 +92,70 @@ body::before {
     color: rgba(254, 243, 199, 0.78);
 }
 
+.info-popover {
+    position: relative;
+    width: min(100%, 650px);
+    margin-top: 6px;
+    text-align: right;
+    z-index: 5;
+}
+
+.info-toggle {
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    border-radius: 50%;
+    border: 1px solid rgba(251, 146, 60, 0.32);
+    background: rgba(39, 22, 13, 0.48);
+    color: rgba(254, 243, 199, 0.78);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.22);
+    font-size: 1rem;
+    line-height: 1;
+}
+
+.info-toggle:hover,
+.info-toggle[aria-expanded="true"] {
+    color: #fef3c7;
+    background: rgba(39, 22, 13, 0.72);
+}
+
+.info-panel {
+    position: absolute;
+    right: 0;
+    bottom: calc(100% + 8px);
+    width: min(92vw, 560px);
+    padding: 10px 12px;
+    box-sizing: border-box;
+    border: 1px solid rgba(251, 146, 60, 0.25);
+    border-radius: 8px;
+    background: rgba(39, 22, 13, 0.72);
+    color: rgba(254, 243, 199, 0.86);
+    font-size: 0.78rem;
+    line-height: 1.45;
+    text-align: left;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(4px);
+}
+
+.info-panel[hidden] {
+    display: none;
+}
+
+.info-panel p {
+    margin: 0 0 8px;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 5px 10px;
+    text-align: left;
+}
+
+.info-grid span {
+    min-width: 0;
+}
+
 /* 包含显示面板与钢琴键盘的统一外层容器：严格限制宽度防止页面整体横向滚动 */
 .piano-app-wrapper {
     display: flex;
@@ -623,6 +687,7 @@ button:disabled {
     }
 
     .app-scene,
+    .info-popover,
     .credits {
         position: relative;
         z-index: 1;
@@ -645,6 +710,16 @@ button:disabled {
     .piano-app-wrapper {
         width: 100%;
         max-width: 650px;
+    }
+
+    .info-panel {
+        font-size: 0.72rem;
+        padding: 8px 10px;
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr;
+        gap: 4px;
     }
 
     #controls {
@@ -707,6 +782,22 @@ button:disabled {
         margin-top: 2px;
         font-size: 0.68rem;
         opacity: 0.5;
+    }
+
+    .info-panel {
+        max-height: 76px;
+        overflow-y: auto;
+        font-size: 0.68rem;
+        padding: 6px 8px;
+    }
+
+    .info-panel p {
+        margin-bottom: 5px;
+    }
+
+    .info-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 3px 8px;
     }
 
     #display-board {

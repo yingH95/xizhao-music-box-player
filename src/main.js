@@ -87,6 +87,8 @@ const practiceBtn = document.getElementById('practiceBtn');
 const muteToggleBtn = document.getElementById('muteToggleBtn');
 const instrumentToggleBtn = document.getElementById('instrumentToggleBtn');
 const hideControlsBtn = document.getElementById('hideControlsBtn');
+const infoToggleBtn = document.getElementById('infoToggleBtn');
+const infoPanel = document.getElementById('infoPanel');
 
 let whiteKeyCount = 0;
 notes.forEach(item => {
@@ -615,6 +617,31 @@ hideControlsBtn.addEventListener('click', () => {
     hideControlsBtn.classList.toggle('active', controlsHidden);
     hideControlsBtn.innerText = controlsHidden ? '▾' : '▴';
     hideControlsBtn.title = controlsHidden ? '显示控制' : '隐藏控制';
+});
+
+function setInfoPanelOpen(isOpen) {
+    infoPanel.hidden = !isOpen;
+    infoToggleBtn.setAttribute('aria-expanded', String(isOpen));
+}
+
+infoToggleBtn.addEventListener('click', event => {
+    event.stopPropagation();
+    setInfoPanelOpen(infoPanel.hidden);
+});
+
+infoPanel.addEventListener('click', event => {
+    event.stopPropagation();
+});
+
+document.addEventListener('click', () => {
+    if (!infoPanel.hidden) setInfoPanelOpen(false);
+});
+
+document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && !infoPanel.hidden) {
+        setInfoPanelOpen(false);
+        infoToggleBtn.focus();
+    }
 });
 
 muteToggleBtn.addEventListener('click', () => {
