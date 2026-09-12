@@ -21,7 +21,7 @@ const notes = [
 
 const SONG_SELECT_DEFAULT = '<option value="">请选择曲谱</option>';
 const KEY_SELECT_DEFAULT = '<option value="">请选择调式</option>';
-const MAJOR_KEY_OPTIONS = ['C', 'D', 'E', 'F', 'G', 'A', 'B'];
+const KEY_ROOT_OPTIONS = ['C', 'D', 'E', 'F', 'G', 'A', 'B'];
 const NOTE_PITCH_CLASSES = {
     C: 0,
     'C#': 1,
@@ -262,6 +262,15 @@ function getKeyRoot(keyName) {
     return match ? normalizeNoteName(`${match[1]}4`).replace(/\d$/, '') : null;
 }
 
+function isMinorKey(keyName) {
+    return /^[A-G][#b]?\s*(?:m|min|minor)$/i.test(keyName || '');
+}
+
+function formatKeyLabel(keyName) {
+    if (!keyName) return '';
+    return `${getKeyRoot(keyName)} ${isMinorKey(keyName) ? '小调' : '大调'}`;
+}
+
 function getSourcePianoVariant() {
     const pianoVariants = Array.isArray(currentSongData?.piano) ? currentSongData.piano : [];
     if (!pianoVariants.length) return null;
@@ -427,7 +436,9 @@ function handlePracticeKeyPress(noteName) {
 function populateKeyOptions() {
     const sourceVariant = getSourcePianoVariant();
     const sourceSheetLines = Array.isArray(sourceVariant?.sheet) ? sourceVariant.sheet : [];
-    const sourceKey = getKeyRoot(sourceVariant?.key || currentSongData?.baseKey) || 'C';
+    const sourceKeyName = sourceVariant?.key || currentSongData?.baseKey || 'C';
+    const modeSuffix = isMinorKey(sourceKeyName) ? 'min' : '';
+    const sourceKey = `${getKeyRoot(sourceKeyName) || 'C'}${modeSuffix}`;
 
     if (!currentSongData || !sourceVariant || !sourceSheetLines.length) {
         keySelect.innerHTML = KEY_SELECT_DEFAULT;
@@ -435,7 +446,7 @@ function populateKeyOptions() {
         return;
     }
 
-    const validKeys = MAJOR_KEY_OPTIONS.filter(keyName => (
+    const validKeys = KEY_ROOT_OPTIONS.map(root => `${root}${modeSuffix}`).filter(keyName => (
         getTranspositionShift(sourceKey, keyName, sourceSheetLines) !== null
     ));
 
@@ -443,7 +454,7 @@ function populateKeyOptions() {
     validKeys.forEach(keyName => {
         const option = document.createElement('option');
         option.value = keyName;
-        option.textContent = `${keyName} 调`;
+        option.textContent = formatKeyLabel(keyName);
         keySelect.appendChild(option);
     });
 
@@ -451,7 +462,7 @@ function populateKeyOptions() {
     keySelect.disabled = validKeys.length <= 1;
     keySelect.value = defaultKey;
     keyPickerTitle.hidden = !validKeys.length;
-    keyTitleText.innerText = keySelect.value ? `${keySelect.value} 调` : '';
+    keyTitleText.innerText = formatKeyLabel(keySelect.value);
 }
 
 songSelect.addEventListener('change', async (e) => {
@@ -503,7 +514,7 @@ songSelect.addEventListener('change', async (e) => {
 keySelect.addEventListener('change', () => {
     if (!currentSongData) return;
     stopPlaybackState();
-    keyTitleText.innerText = keySelect.value ? `${keySelect.value} 调` : '';
+    keyTitleText.innerText = formatKeyLabel(keySelect.value);
     renderSheetForKey(keySelect.value || 'C');
 });
 

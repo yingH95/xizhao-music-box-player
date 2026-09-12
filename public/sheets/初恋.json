@@ -1,0 +1,32 @@
+{
+    "title": "初恋",
+    "singer": "何衍朝",
+    "difficulty": "普通",
+    "piano": [
+        {
+            "key": "Amin",
+            "sheet": [
+                {
+                    "lyrics": "分分钟都盼望跟他见面",
+                    "notes": "E6 E6 E6 E6 - C6 B5 - F6 - E6 - C6 A5 -"
+                },
+                {
+                    "lyrics": "默默地伫候亦从来没怨",
+                    "notes": "A5 A5 A5 C6 - A5 A5 G#5 A5 B5 - C6 - -"
+                },
+                {
+                    "lyrics": "分分钟都渴望与他相见",
+                    "notes": "E6 E6 E6 E6 - C6 B5 - F6 - G6 - D6 - C6 -"
+                },
+                {
+                    "lyrics": "在路上碰着亦乐上几天",
+                    "notes": "A5 A5 A5 C6 - A5 A5 A5 C6 F6 E6 - - -"
+                },
+                {
+                    "lyrics": "轻快的感觉飘上面",
+                    "notes": "E6 D6 E6 D6 C6 D6 C6 - A5 - -"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,60 @@
+{
+    "title": "匿名的好友",
+    "singer": "何昶希",
+    "difficulty": "普通",
+    "piano": [
+        {
+            "key": "C",
+            "sheet": [
+                {
+                    "lyrics": "不能握的手",
+                    "notes": "G6 - - E6 - - G6 - E6 D6 - -"
+                },
+                {
+                    "lyrics": "从此匿名的朋友",
+                    "notes": "C6 D6 E6 - A6 G6 - E6 - G6 - -"
+                },
+                {
+                    "lyrics": "其实我的执着",
+                    "notes": "C6 D6 E6 - A6 G6 - E6 -"
+                },
+                {
+                    "lyrics": "依然执着",
+                    "notes": "G6 - E6 D6 - C6 - -"
+                },
+                {
+                    "lyrics": "与你无关",
+                    "notes": "F6 E6 F6 E6"
+                },
+                {
+                    "lyrics": "泪自行吸收",
+                    "notes": "F6 - G6 - F6 E6 C6 D6 - -"
+                },
+                {
+                    "lyrics": "不能握的手",
+                    "notes": "G6 - - E6 - - G#6 - E6 D6 - -"
+                },
+                {
+                    "lyrics": "却比亲人更亲厚",
+                    "notes": "C6 D6 E6 - A6 B6 - C7 - A6 - -"
+                },
+                {
+                    "lyrics": "但所有如果",
+                    "notes": "A6 C7 A6 G6 E6 - -"
+                },
+                {
+                    "lyrics": "都没有如果",
+                    "notes": "E6 G6 E6 D6 C6 - -"
+                },
+                {
+                    "lyrics": "只有失去的温柔",
+                    "notes": "A5 C6 F6 - E6 F6 - G6 - D6 - -"
+                },
+                {
+                    "lyrics": "最温柔",
+                    "notes": "E6 - -  A5 - C6 - -"
+                }
+            ]
+        }
+    ]
+}
