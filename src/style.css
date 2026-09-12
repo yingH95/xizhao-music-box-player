@@ -82,6 +82,16 @@ body::before {
     text-shadow: 0 2px 5px rgba(0, 0, 0, 0.45);
 }
 
+.credits a {
+    color: inherit;
+    text-decoration-color: rgba(254, 243, 199, 0.35);
+    text-underline-offset: 3px;
+}
+
+.credits a:hover {
+    color: rgba(254, 243, 199, 0.78);
+}
+
 /* 包含显示面板与钢琴键盘的统一外层容器：严格限制宽度防止页面整体横向滚动 */
 .piano-app-wrapper {
     display: flex;
